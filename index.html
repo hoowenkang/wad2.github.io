@@ -1,7 +1,212 @@
-<html>
-  <header>
-    <h1>
-  Hoo wenkang
-    </h1>
-  </header>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Justin Bieber Fanpage</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Belieber Forever</h1>
+        <p>Celebrating the journey of Justin Bieber through images</p>
+    </header>
+
+    <section id="gallery">
+        <div class="gallery-item">
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="images/justin1.jpg" alt="Justin Bieber 1">
+                    </div>
+                    <div class="flip-card-back">
+                        <p>"Never Say Never"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="gallery-item">
+            <img src="images/justin2.jpg" alt="Justin Bieber 2">
+        </div>
+        <div class="gallery-item">
+            <img src="images/justin3.jpg" alt="Justin Bieber 3">
+        </div>
+        <div class="gallery-item">
+            <img src="images/justin4.jpg" alt="Justin Bieber 4">
+        </div>
+        <div class="gallery-item">
+            <img src="images/justin5.jpg" alt="Justin Bieber 5">
+        </div>
+        <div class="gallery-item">
+            <img src="images/justin6.jpg" alt="Justin Bieber 6">
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox">
+        <span class="close">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+    </div>
+
+    <script src="script.js"></script>
+</body>
 </html>
+
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f7f7;
+    color: #333;
+}
+
+header {
+    text-align: center;
+    padding: 50px 20px;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/justin-hero.jpg') no-repeat center center/cover;
+    color: white;
+}
+
+header h1 {
+    font-size: 3em;
+    margin: 0;
+}
+
+header p {
+    font-size: 1.2em;
+}
+
+#gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+}
+
+.gallery-item {
+    flex: 1 1 30%;
+    margin: 10px;
+    overflow: hidden;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+}
+
+.gallery-item:hover {
+    transform: scale(1.05);
+}
+
+.lightbox {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+}
+
+.lightbox-content {
+    max-width: 80%;
+    max-height: 80%;
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 2em;
+    color: white;
+    cursor: pointer;
+}
+
+/* Existing styles */
+
+.gallery-item {
+    flex: 1 1 30%;
+    margin: 10px;
+    perspective: 1000px; /* Perspective for 3D effect */
+}
+
+.flip-card {
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+}
+
+.flip-card-front {
+    background-color: #fff;
+    color: black;
+}
+
+.flip-card-back {
+    background-color: #333;
+    color: white;
+    transform: rotateY(180deg);
+}
+
+
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightbox-img");
+    const closeBtn = document.querySelector(".close");
+    const galleryItems = document.querySelectorAll(".gallery-item img");
+
+    galleryItems.forEach(item => {
+        item.addEventListener("click", function() {
+            lightbox.style.display = "flex";
+            lightboxImg.src = this.src;
+        });
+    });
+
+    closeBtn.addEventListener("click", function() {
+        lightbox.style.display = "none";
+    });
+
+    lightbox.addEventListener("click", function(event) {
+        if (event.target !== lightboxImg) {
+            lightbox.style.display = "none";
+        }
+    });
+});
+
+</script>
